@@ -12,3 +12,5 @@ export const BLOCKS_PER_MONTH = 518_400;
 
 /** Approximate Celo blocks per year (365 days). */
 export const BLOCKS_PER_YEAR = 6_307_200;
+
+export const TEST_ING = 12
