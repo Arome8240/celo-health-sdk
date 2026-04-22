@@ -366,6 +366,10 @@ export async function mintTokens(
   to: Address,
   amount: string,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const amountWei = parseUnits(amount, 18);
   
   const hash = await walletClient.writeContract({
@@ -374,6 +378,7 @@ export async function mintTokens(
     functionName: 'mint',
     args: [to, amountWei],
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
@@ -384,11 +389,16 @@ export async function pauseContract(
   config: ResolvedCeloHealthConfig,
   walletClient: WalletClient,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const hash = await walletClient.writeContract({
     address: config.contractAddress,
     abi: HOSPITAL_TOKEN_ABI,
     functionName: 'pause',
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
@@ -399,11 +409,16 @@ export async function unpauseContract(
   config: ResolvedCeloHealthConfig,
   walletClient: WalletClient,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const hash = await walletClient.writeContract({
     address: config.contractAddress,
     abi: HOSPITAL_TOKEN_ABI,
     functionName: 'unpause',
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
@@ -414,14 +429,19 @@ export async function grantRole(
   config: ResolvedCeloHealthConfig,
   walletClient: WalletClient,
   role: string,
-  account: Address,
+  targetAccount: Address,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const hash = await walletClient.writeContract({
     address: config.contractAddress,
     abi: HOSPITAL_TOKEN_ABI,
     functionName: 'grantRole',
-    args: [role as `0x${string}`, account],
+    args: [role as `0x${string}`, targetAccount],
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
@@ -432,14 +452,19 @@ export async function revokeRole(
   config: ResolvedCeloHealthConfig,
   walletClient: WalletClient,
   role: string,
-  account: Address,
+  targetAccount: Address,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const hash = await walletClient.writeContract({
     address: config.contractAddress,
     abi: HOSPITAL_TOKEN_ABI,
     functionName: 'revokeRole',
-    args: [role as `0x${string}`, account],
+    args: [role as `0x${string}`, targetAccount],
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
@@ -452,6 +477,10 @@ export async function transferTokens(
   to: Address,
   amount: string,
 ): Promise<Hash> {
+  if (!walletClient.account) {
+    throw new Error('Wallet client must have an account');
+  }
+
   const amountWei = parseUnits(amount, 18);
   
   const hash = await walletClient.writeContract({
@@ -460,6 +489,7 @@ export async function transferTokens(
     functionName: 'transfer',
     args: [to, amountWei],
     chain: getChain(config.network),
+    account: walletClient.account,
   });
 
   return hash;
