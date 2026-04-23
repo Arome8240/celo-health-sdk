@@ -1,6 +1,5 @@
 import {
   createPublicClient,
-  createWalletClient,
   http,
   parseUnits,
   formatUnits,
