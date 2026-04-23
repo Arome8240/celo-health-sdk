@@ -1,7 +1,9 @@
 {
   "name": "celo-health-sdk",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "TypeScript SDK for interacting with Celo Health contracts",
+  "type": "module",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -13,7 +15,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",
@@ -34,12 +37,22 @@
     "health",
     "erc20"
   ],
-  "author": "Celo Health",
+  "author": "Dev Arome",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Arome8240/celo-health-sdk"
   },
+   "bugs": {
+    "url": "https://github.com/Arome8240/celo-health-sdk/issues"
+  },
+  "homepage": "https://github.com/Arome8240/celo-health-sdk#readme",
   "dependencies": {
     "viem": "^2.38.5"
   },
